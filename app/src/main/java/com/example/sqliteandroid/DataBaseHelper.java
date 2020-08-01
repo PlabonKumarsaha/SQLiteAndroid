@@ -46,8 +46,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_CUSTOMER_AGE,customerModel.getAge());
         cv.put(COLUMN_ACTIVE_CUSTOMER,customerModel.isActive());
         //nullCOlumHack is used to put atleast one value in the row
-        sqLiteDatabase.insert(customer_table,null,cv);
+        final long insert = sqLiteDatabase.insert(customer_table, null, cv);
 
-        return true;
+        if(insert == -1){
+            return false;
+        }else{
+            return true;
+        }
+
+
     }
 }

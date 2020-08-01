@@ -2,7 +2,7 @@ package com.example.sqliteandroid.Model;
 
 public class CustomerModel {
 
-    private  String id;
+    private  int id;
     private String name;
     private int age;
     private boolean isActive;
@@ -10,7 +10,7 @@ public class CustomerModel {
     public CustomerModel() {
     }
 
-    public CustomerModel(String id, String name, int age, boolean isActive) {
+    public CustomerModel(int id, String name, int age, boolean isActive) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -27,11 +27,11 @@ public class CustomerModel {
                 '}';
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
