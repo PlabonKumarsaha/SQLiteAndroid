@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
 
                 CustomerModel customerModel = (CustomerModel) parent.getItemAtPosition(i);
                 dataBaseHelper.deleteOne(customerModel);
-
                 //show the datas after delete
                 customAdapter = new ArrayAdapter<CustomerModel>(MainActivity.this,android.R.layout.simple_expandable_list_item_1,dataBaseHelper.getAllList());
                 listView.setAdapter(customAdapter);
