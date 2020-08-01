@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.example.sqliteandroid.Model.CustomerModel;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText nameET,ageET;
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
                 boolean sucess = dataBaseHelper.addOneColumn(customerModel);
                 Toast.makeText(MainActivity.this,"SUcess : "+sucess,Toast.LENGTH_SHORT).show();
-                
+
 
             }
         });
@@ -60,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
+                List<CustomerModel>geteveryOne = dataBaseHelper.getAllList();
+                Toast.makeText(getApplicationContext(),geteveryOne.toString(),Toast.LENGTH_SHORT).show();
             }
         });
 

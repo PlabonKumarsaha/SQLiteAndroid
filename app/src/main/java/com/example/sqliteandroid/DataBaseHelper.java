@@ -2,12 +2,16 @@ package com.example.sqliteandroid;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
 import com.example.sqliteandroid.Model.CustomerModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DataBaseHelper extends SQLiteOpenHelper {
@@ -53,7 +57,31 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }else{
             return true;
         }
+    }
 
+    public List<CustomerModel> getAllList(){
+        List<CustomerModel>returnList = new ArrayList<>();
+        String queryString = "SELECT * FROM "+customer_table;
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(queryString,null);
 
+        if(cursor.moveToFirst()){
+            do{
+
+                int customerID =cursor.getInt(0);
+                String customerName = cursor.getString(1);
+                int customerAge = cursor.getInt(2);
+                boolean customerActive =cursor.getInt(3) == 1 ? true:false;
+                CustomerModel customerModel = new CustomerModel(customerID,customerName,customerAge,customerActive);
+                returnList.add(customerModel);
+
+            }while(cursor.moveToNext());
+        } else{
+
+        }
+        //close them when the data is passed in the returnList
+        cursor.close();
+        sqLiteDatabase.close();
+        return  returnList;
     }
 }
