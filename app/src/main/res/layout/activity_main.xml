@@ -23,7 +23,7 @@
         android:hint="Enter Your age"
         android:textSize="20sp"/>
 
-    <Button
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/activeCustomerBTn"
         android:layout_marginTop="15dp"
         android:layout_gravity="center_horizontal"
