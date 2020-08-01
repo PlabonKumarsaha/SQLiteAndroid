@@ -6,6 +6,7 @@ import androidx.appcompat.widget.SwitchCompat;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -81,6 +82,22 @@ public class MainActivity extends AppCompatActivity {
 
                  customAdapter = new ArrayAdapter<CustomerModel>(MainActivity.this,android.R.layout.simple_expandable_list_item_1,dataBaseHelper.getAllList());
                 listView.setAdapter(customAdapter);
+
+
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
+
+                CustomerModel customerModel = (CustomerModel) parent.getItemAtPosition(i);
+                dataBaseHelper.deleteOne(customerModel);
+
+                //show the datas after delete
+                customAdapter = new ArrayAdapter<CustomerModel>(MainActivity.this,android.R.layout.simple_expandable_list_item_1,dataBaseHelper.getAllList());
+                listView.setAdapter(customAdapter);
+                Toast.makeText(getApplicationContext(),"Deleted : "+customerModel.toString(),Toast.LENGTH_SHORT).show();
 
 
             }

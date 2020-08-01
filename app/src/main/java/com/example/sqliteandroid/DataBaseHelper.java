@@ -59,6 +59,18 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean deleteOne(CustomerModel customerModel){
+   //if a customer is found then we will delete that with id and return true oher wise false
+        SQLiteDatabase sqLiteDatabase= this.getWritableDatabase();
+        String queryString = "DELETE FROM "+customer_table +" WHERE "+ " "+COLUMN_ID +" "+"="+customerModel.getId();
+        Cursor cursor = sqLiteDatabase.rawQuery(queryString,null);
+        if(cursor.moveToFirst()){
+            return true;
+        }else{
+            return  false;
+        }
+
+    }
     public List<CustomerModel> getAllList(){
         List<CustomerModel>returnList = new ArrayList<>();
         String queryString = "SELECT * FROM "+customer_table;
