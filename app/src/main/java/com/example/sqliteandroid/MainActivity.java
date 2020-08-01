@@ -5,6 +5,8 @@ import androidx.appcompat.widget.SwitchCompat;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -23,6 +25,11 @@ public class MainActivity extends AppCompatActivity {
     Button viewAllBTn,addBTn;
     ListView listView;
 
+    ArrayAdapter customAdapter;
+    DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
+    List<CustomerModel>geteveryOne;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +42,11 @@ public class MainActivity extends AppCompatActivity {
         viewAllBTn = findViewById(R.id.viewAllBTn);
         addBTn = findViewById(R.id.addBTn);
         listView = findViewById(R.id.listView);
+
+        dataBaseHelper = new DataBaseHelper(MainActivity.this);
+        customAdapter = new ArrayAdapter<CustomerModel>(MainActivity.this,android.R.layout.simple_expandable_list_item_1,dataBaseHelper.getAllList());
+        listView.setAdapter(customAdapter);
+
 
         addBTn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +64,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
                 boolean sucess = dataBaseHelper.addOneColumn(customerModel);
-                Toast.makeText(MainActivity.this,"SUcess : "+sucess,Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"Sucess : "+sucess,Toast.LENGTH_SHORT).show();
+                customAdapter = new ArrayAdapter<CustomerModel>(MainActivity.this,android.R.layout.simple_expandable_list_item_1,dataBaseHelper.getAllList());
+                listView.setAdapter(customAdapter);
 
 
             }
@@ -62,9 +76,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
-                List<CustomerModel>geteveryOne = dataBaseHelper.getAllList();
-                Toast.makeText(getApplicationContext(),geteveryOne.toString(),Toast.LENGTH_SHORT).show();
+               // geteveryOne = dataBaseHelper.getAllList();
+                //Toast.makeText(getApplicationContext(),geteveryOne.toString(),Toast.LENGTH_SHORT).show();
+
+                 customAdapter = new ArrayAdapter<CustomerModel>(MainActivity.this,android.R.layout.simple_expandable_list_item_1,dataBaseHelper.getAllList());
+                listView.setAdapter(customAdapter);
+
+
             }
         });
 
