@@ -1,22 +1,23 @@
 # SQLiteAndroid
-# SQLIte android
 
-Databse(open source). Relational databse. It is a local daatbase. It oden't need JDBC..it saves data locally in your database. Android comes with buildin sqlite.
+* Databse(open source),Relational databse
+* It is a local daatbase. It oden't need JDBC..it saves data locally in your database.
+* Android comes with buildin sqlite.
 
 save -locally(sd card),sqlite databse
 
 cloud
--api service,
--sql server,
--firebase
+* api service,
+* sql server,
+* firebase
 
-## ADvantage
--fast performance,offline cache,auto complete for locally
+## Advantage
+* fast performance,offline cache,auto complete for locally
 
 ## single file
--similar to MS acess 
--in binary format and it's embabed in the android system
--ACID(automatic,consistent, isolation,durability) compliant . it means it can handle 
+* similar to MS acess 
+* in binary format and it's embabed in the android system
+* ACID(automatic,consistent, isolation,durability) compliant . it means it can handle 
 failure complaient .
 
 - Data types - null, int, Real(floating point values),TEXT,BLOB(binary large object)
@@ -30,7 +31,7 @@ sql helper - create DB the first time it's required
 result
 -ContentValues - associative array(hashmap like)
 
-## code
+## coding steps
 1. Create a Model class name CustomerModel,add the properties.Add constructor,getter and setters
 2.add a to string method for printing all the content of a class object.
 3. create a Databsehelper class and exetend the class to SQLiteOpenHelper then implemnet the methods
