@@ -33,11 +33,15 @@ result
 
 ## coding steps
 1. Create a Model class name CustomerModel,add the properties.Add constructor,getter and setters
-2.add a to string method for printing all the content of a class object.
+2.add a to string method in the model calss for printing all the content of a class object.
+
 3. create a Databsehelper class and exetend the class to SQLiteOpenHelper then implemnet the methods
-there will be two method - a.onCreate -first time DB is accesed
- b.onUpgrade - when there is any kind of change in databse.It prevents previous users app from breakig when you chnage the design of DB
-.It will modify the scema when necessary.
+there will be two method - 
+     1.onCreate -first time DB is accesed. 
+     or,
+     2.onUpgrade - when there is any kind of change in databse.It prevents previous users app from breakig when you chnage the design of DB.It will 
+     modify the scema when necessary.
+
 4.create a constructor or DatabseHelper (context,dbName,cursorFactory and version).Then add the values in
 the super from constructor except for context.
 ex :  
@@ -58,6 +62,7 @@ ex : public boolean addOneColumn(CustomerModel customerModel){
 
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         //associative array like thing for bringing all the data
+        
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_CUSTOMER_NAME,customerModel.getName());
         cv.put(COLUMN_CUSTOMER_AGE,customerModel.getAge());
